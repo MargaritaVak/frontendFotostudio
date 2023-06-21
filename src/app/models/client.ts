@@ -1,0 +1,1 @@
+export class Client {  id!: string;  full_name!: string;  email!: string;  password!: string;  photo!:string}

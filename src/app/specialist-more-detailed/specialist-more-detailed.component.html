@@ -1,0 +1,45 @@
+<div class="main-page">
+  <div class="main_content">
+    <p class="label-main">{{ specialist.full_name }}</p>
+    <figure class="frame">
+      <div class="window-photo">
+        <img class="img-main"
+             [src]="specialist.photo ? sanitizer.bypassSecurityTrustResourceUrl(specialist.photo) : 'https://sun9-59.userapi.com/impg/6rJY6jASkJjcGGO1tSb9XBqflkmkCbm30mUvyA/K-u2YhVOl7A.jpg?size=1120x630&quality=95&sign=8437e5928ee056c288cbc201c8239e8b&c_uniq_tag=-DERMfCPkZnirMCTLL-lN31I8aDk09sXXu7A7HX-k-c&type=album'"
+             alt="{{specialist.full_name}}"/>
+      </div>
+      <div class="frame-text">
+        <figcaption><p>Specialization:</p> <p class="element">{{ specialization }}</p></figcaption>
+        <figcaption><p>Work experience:</p> <p class="element">{{ specialist.work_experience ? specialist.work_experience : 'no' }}</p></figcaption>
+        <figcaption *ngIf="specialist.additional_information"><p>About me:</p> <p class="element">{{ specialist.additional_information }}</p></figcaption>
+      </div>
+    </figure>
+  </div>
+  <div class="right-block">
+    <div>
+      <h2 class="label_service"  *ngIf="!isLoggedIn || isLoggedIn">services</h2>
+      <ul>
+        <li *ngFor="let service of service_spec" >
+          <div class="service-form">
+            <div class="service-form-text">
+              <h3>{{ service.name }}</h3>
+              <p>Cost: {{ service.cost_services }}</p>
+              <p>
+                Time:
+                <span *ngIf="service.time_services.hours">{{ service.time_services.hours }} hour</span>
+                <span *ngIf="service.time_services.minutes">.{{ service.time_services.minutes }} min</span>
+              </p>
+              <p *ngIf="service.more_info" >Additional Info: {{ service.more_info }}</p>
+            </div>
+            <div class="photo-container">
+              <img *ngFor="let photo of service.portfolio" class="img-main"
+                   [src]="sanitizer.bypassSecurityTrustResourceUrl(photo)"
+                   alt="{{ service.name }}" />
+            </div>
+            <button *ngIf="isLoggedIn && !isSpecialist"  class="add-button" (click)="addToCart(service)">Add to Basket</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+

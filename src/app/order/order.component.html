@@ -1,0 +1,113 @@
+<div class="main-page">
+  <main class="form-order">
+    <mat-card class="cart-card" *ngIf="!isSuccessful">
+      <mat-card-title class="name"> <h1>New Order</h1></mat-card-title>
+      <div class="studio-booking" *ngIf="isBook">
+        <p class="name-position">Studio Booking</p>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Date</th>
+            <th>Total Price</th>
+          </tr>
+          <tr>
+            <td>{{ studioBookings[0].name }}</td>
+            <td>{{ studioBookings[0].startTime }}</td>
+            <td>{{ studioBookings[0].endTime }}</td>
+            <td>
+              {{ studioBookings[0].bookingDate | date : 'yyyy-MM-dd' : 'UTC' }}
+            </td>
+            <td>{{ studioBookings[0].totalCost }}</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Услуги специалистов -->
+      <div class="specialist-services" *ngIf="specialistServices.length > 0">
+        <h2 class="name-position">Services</h2>
+        <div *ngFor="let item of specialistServices">
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>Time</th>
+              <th>Price</th>
+            </tr>
+            <tr>
+              <td>{{ item.name }}</td>
+              <td>
+                <span *ngIf="item.time_services.hours"
+                  >{{ item.time_services.hours }} hour</span
+                >
+                <span *ngIf="item.time_services.minutes"
+                  >.{{ item.time_services.minutes }} min</span
+                >
+              </td>
+              <td>{{ item.cost_services }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <h2 class="name-position">Order Details</h2>
+      <div class="order-details" *ngIf="!isBook">
+        <div>
+          <label for="start-time">Start Time:</label>
+          <input type="time" id="start-time" [(ngModel)]="startTime" required />
+        </div>
+        <div>
+          <label for="end-time">End Time:</label>
+          <input type="time" id="end-time" [(ngModel)]="endTime" required />
+        </div>
+        <div>
+          <label for="date">Date:</label>
+          <input type="date" id="date" [(ngModel)]="bookingDate" required />
+        </div>
+        <div>
+          <label for="comment_1">Comment:</label>
+          <input type="text" id="comment_1" [(ngModel)]="comment" required />
+        </div>
+      </div>
+
+      <div class="order-details" *ngIf="studioBookings.length === 1">
+        <div *ngIf="studioBookings.length === 1">
+          <div>
+            <label>Start Time:</label>
+            <p>{{ studioBookings[0].startTime }}</p>
+          </div>
+          <div>
+            <label>End Time:</label>
+            <p>{{ studioBookings[0].endTime }}</p>
+          </div>
+          <div>
+            <label>Date:</label>
+            <p>
+              {{ studioBookings[0].bookingDate | date : 'yyyy-MM-dd' : 'UTC' }}
+            </p>
+          </div>
+          <div>
+            <label for="comment_2">Comment:</label>
+            <input type="text" id="comment_2" [(ngModel)]="comment" required />
+          </div>
+        </div>
+      </div>
+
+      <mat-card-actions class="cart-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          class="checkout-button"
+          (click)="placeOrder()"
+        >
+          Place an order
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      The order has been successfully created. Order number: {{ number_order }}.
+      <a [routerLink]="['/client-personal-account']"
+        >Go to your personal account</a
+      >
+    </div>
+  </main>
+</div>

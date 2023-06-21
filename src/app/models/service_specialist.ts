@@ -1,0 +1,1 @@
+export class Service_specialist{  id!: string;  id_specialist!: string;  name!: string;  id_service!:string;  time_services!: {    hours?: number;    minutes?: number;  };  cost_services!:string;  more_info!: string;  portfolio!:string;}

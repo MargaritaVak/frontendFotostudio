@@ -1,0 +1,18 @@
+<div class="all-location-main">
+  <mat-nav-list class="all-locations">
+    <mat-list-item *ngFor="let local of locations">
+      <a>
+        <mat-card class="example-card">
+          <mat-card-content class="img-card-content">
+            <img class="img-main"
+                 [src]="sanitizer.bypassSecurityTrustResourceUrl(local.photo)"
+                 alt="{{ local.name }}"
+                 [routerLink]="['/location-more-detailed', local.id]"
+            />
+          </mat-card-content>
+          <p class="ac-1" >{{ local.name }}</p>
+        </mat-card>
+      </a>
+    </mat-list-item>
+  </mat-nav-list>
+</div>

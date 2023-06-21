@@ -1,0 +1,119 @@
+.main-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-order {
+  height: auto;
+  width: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0.5vh solid #bbe829;
+  border-radius: 1vh;
+  margin-top: 10vh;
+  padding: 2vh;
+}
+.name {
+  text-align: center;
+}
+
+.name h1 {
+  padding: 0;
+  margin: 0;
+  font: bold 4vh 'Roboto Light', sans-serif;
+  color: #ffffff;
+  text-shadow: -0.3vh -0.3vh 0.2vh #bbe829, 0.3vh -0.3vh 0.2vh #bbe829,
+    -0.3vh 0.3vh 0.2vh #bbe829, 0.3vh 0.3vh 0.2vh #bbe829;
+}
+
+.name-position {
+  padding-top: 1vh;
+  margin: 0.5vh;
+  font: bold 3vh 'Roboto Light', sans-serif;
+  color: #ffffff;
+  text-shadow: -0.2vh -0.2vh 0.1vh #cccccc, 0.2vh -0.2vh 0.1vh #cccccc,
+    -0.2vh 0.2vh 0.1vh #cccccc, 0.2vh 0.2vh 0.1vh #cccccc;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font: bold 1.8vh 'Roboto Light', sans-serif;
+  color: #ffffff;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+th {
+  background-color: #bcf802;
+}
+
+tr:nth-child(even) {
+  background-color: #c1f84b;
+}
+
+tr:hover {
+  background-color: #9ede16;
+}
+
+td span {
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background-color: #a7d312;
+  font-size: 12px;
+}
+
+.order-details .name-position {
+  margin-bottom: 1vh;
+}
+
+.order-details label {
+  display: block;
+  margin-bottom: 0.5vh;
+  font: bold 1.8vh 'Roboto Light', sans-serif;
+  color: #aaadaa;
+}
+
+.order-details input[type='text'],
+.order-details input[type='time'],
+.order-details input[type='date'] {
+  width: 97.5%;
+  padding: 0.5vh;
+  margin-bottom: 1vh;
+  font-size: 1.8vh;
+}
+
+.order-details p {
+  margin-bottom: 1vh;
+}
+
+.order-details h2 {
+  margin-top: 0;
+  font-size: 1.8vh;
+}
+
+.order-details > div {
+  margin-bottom: 1vh;
+}
+
+.cart-actions {
+  text-align: center;
+}
+.checkout-button {
+  background-color: #bbe829;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.8vh;
+}

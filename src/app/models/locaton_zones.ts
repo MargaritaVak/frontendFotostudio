@@ -1,0 +1,1 @@
+export class LocationZones {  id!: string;  location_id!:string;  name!: string;  price_per_hour!:string;  photo!: string[];}

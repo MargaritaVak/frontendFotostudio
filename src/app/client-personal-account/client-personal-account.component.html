@@ -1,0 +1,8 @@
+<div class="main-page" *ngIf="isClient; else specialistProfile">
+  <app-personal-account-client></app-personal-account-client>
+</div>
+<ng-template #specialistProfile>
+  <div class="main-page" >
+    <app-personal-account-specialist></app-personal-account-specialist>
+  </div>
+</ng-template>

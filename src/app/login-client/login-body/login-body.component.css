@@ -1,0 +1,94 @@
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 90vh;
+  margin-top: 12.2vh;
+  background: linear-gradient(to right top, #bbe829, #f0ffb9) ;
+}
+
+.white-square{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60vh;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 50px;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.login-full-width {
+  border: 2px solid #bbe829;
+  height: auto;
+  width: 350px;
+  border-radius: 5px;
+  font: 20px 'Roboto', sans-serif;
+  padding: 10px;
+}
+.login-form {
+  align-items: center;
+  margin: 0 10px 10px;
+  width: auto;
+  float: left;
+}
+
+.name {
+  margin-top: 5vh;
+  align-items: center;
+  font: bold 45px 'Roboto', Arial;
+  color: #bbe829;
+}
+
+
+.password-full-width {
+  border: 2px solid #bbe829;
+  height: auto;
+  width: 350px;
+  border-radius: 5px;
+  font: 20px 'Roboto', sans-serif;
+  padding: 10px;
+}
+.password-form {
+  align-items: center;
+  width: auto;
+  float: left;
+  margin: 0 16px 30px;
+}
+
+.mat-fab.button-select-role{
+  border-radius: 50px;
+  width: 200px;
+  font: bold 25px/1 'Roboto', sans-serif;
+  background-color: #bbe829;
+  color: white;
+  margin-bottom: 5vh;
+  margin-top: 2vh;
+}
+
+.button-role{
+  width: auto;
+}
+.label_form{
+  font: bold 15px/1 'Roboto', sans-serif;
+  color: white;
+  text-shadow:
+    -1px -1px 0 #bbe829,
+    1px -1px 0 #bbe829,
+    -1px 1px 0 #bbe829,
+    1px 1px 0 #bbe829;
+}
+
+.alert.alert-success{
+  font: bold 30px 'Roboto', sans-serif;
+  color: white;
+}

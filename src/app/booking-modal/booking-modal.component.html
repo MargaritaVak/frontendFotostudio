@@ -1,0 +1,25 @@
+<div class="main-page">
+  <div class="content">
+    <header id="modal-header">
+      <h2>Booking studio</h2>
+    </header>
+    <div>
+      <div>
+        <label for="startTime">Start Time</label>
+        <input type="time" id="startTime" placeholder="Enter Start Time" [(ngModel)]="booking_zone.start_time" />
+      </div>
+      <div>
+        <label for="endTime">End Time</label>
+        <input type="time" id="endTime" placeholder="Enter End Time" [(ngModel)]="booking_zone.end_time" />
+      </div>
+      <div>
+        <label for="bookingDate">Select Day</label>
+        <input type="date" id="bookingDate" placeholder="Choose a Day" [(ngModel)]="booking_zone.booking_date" />
+      </div>
+    </div>
+    <footer>
+      <button (click)="goBack()">Cancel</button>
+      <button (click)="submitBooking()">Book</button>
+    </footer>
+  </div>
+</div>

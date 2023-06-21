@@ -1,0 +1,181 @@
+:host {
+  box-sizing: border-box;
+}
+
+.name-site h1 {
+  font: bold 8vh 'Rammetto One', sans-serif;
+  color: #bbe829;
+  padding-right: 3vh ;
+}
+.name-site {
+  cursor: pointer;
+}
+
+.mat-button.button-icon {
+  height: 5vh;
+  padding: 0;
+  font-size: 5%;
+  background-color: #ffffff;
+  width: 10vh;
+  top: 0;
+}
+.search-icon {
+  padding-bottom: 8px;
+  right: 0;
+}
+
+input {
+  font-size: 25px;
+}
+
+.toolbar-container {
+  border: 0.25vh solid #bcf802;
+  height: 12vh;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  box-shadow: 2px 2px 2px #befa03;
+}
+
+.toolbar {
+  padding: 0;
+}
+.search-full-width {
+  border: 2px solid #bfc0bf;
+  height: auto;
+  width: 80%;
+  border-radius: 5px;
+}
+
+.button-icon {
+  background-color: #ffffff;
+  padding: 0;
+  width: 30px;
+}
+
+.search-form {
+  width: 15%;
+  float: left;
+}
+.search-icon {
+  color: #bfc0bf;
+}
+
+input {
+  margin: 5px;
+}
+.button-select-role {
+  border-radius: 100px;
+  width: 16vh;
+  height: 6.5vh;
+  font: bold 2.5vh 'Roboto', sans-serif;
+  background-color: #bbe829;
+  color: white;
+}
+
+
+.button-role {
+
+}
+.account-icon {
+  width: 100%;
+  height: 70%;
+  font-size: 4em;
+  color: #bbe829;
+}
+
+.registration-account-button {
+  border-radius: 100px;
+  width: 16vh;
+  height: 6.5vh;
+  font: bold 2.5vh 'Roboto', sans-serif;
+  background-color: white;
+  border: 2px solid #bbe829;
+  color: #bbe829;
+}
+.button-registration {
+
+  margin: 0 1%;
+}
+.button-basket{
+  border-radius: 70vh;
+  width: auto;
+  font: bold 18px/1 'Roboto', sans-serif;
+  background-color: #ffffff;
+  border: 2px solid #bbe829;
+  margin-right:10px ;
+}
+
+.button-basket-click{
+  background-color: white;
+  font: bold 18px/1 'Roboto', sans-serif;
+  color: #bbe829;
+}
+
+
+.spacer {
+  flex: 1;
+}
+
+.navbar-form {
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.list {
+  color: #ffffff;
+  font-size: 3vh;
+}
+
+.mat-icon-button {
+  background-color: #bbe829;
+  width: 6.5vh;
+  height: 6.5vh;
+
+}
+
+mat-sidenav {
+  background-color: #ffffff;
+  border: 2px solid #bbe829;
+  width: 20% !important;
+}
+
+
+mat-drawer-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+mat-sidenav-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+mat-sidenav-content{
+  height: 100vh;
+  overflow: auto;
+}
+.ml-2 {
+  font: bold 2.5vh 'Roboto', sans-serif;
+  color: #bbe829;
+  margin-bottom:1em ;
+}
+
+footer{
+
+  height: 10vh;
+  background-color: white;
+  border-top: 0.4vh solid #befa03;
+  color: #b3ec00;
+  margin-top: auto;
+}

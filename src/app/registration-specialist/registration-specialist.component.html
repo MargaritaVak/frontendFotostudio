@@ -1,0 +1,135 @@
+<div class="body">
+  <form class="white-square">
+    <form
+      (submit)="register()"
+      *ngIf="!isSuccessful"
+      name="form"
+      #f="ngForm"
+      novalidate
+      class="form-group"
+    >
+      <h1 class="name">Sign up</h1>
+      <form class="sign_up-form">
+        <p class="label_form" for="id_specialization">Specialization</p>
+        <select
+          type="text"
+          id="id_specialization"
+          class="select-specialization-full-width"
+          name="id_specialization"
+          [(ngModel)]="specialist.id_specialization"
+          required
+          #id_specialization="ngModel"
+        >
+          <option
+            *ngFor="let specialization of specializations"
+            [value]="specialization.id"
+          >
+            {{ specialization.name }}
+          </option>
+          <option value="custom">Custom specialization</option>
+        </select>
+        <div *ngIf="specialist.id_specialization === 'custom'">
+          <input
+            type="text"
+            [(ngModel)]="customService"
+            name="customService"
+            class="sign_up-full-width-2"
+            required
+          />
+        </div>
+        <div
+          class="alert-danger"
+          *ngIf="id_specialization.errors && f.submitted"
+        >
+          <div
+            *ngIf="
+              id_specialization.errors['required'] &&
+              !specialist.id_specialization
+            "
+          >
+            Specialization is required
+          </div>
+          <div
+            *ngIf="specialist.id_specialization === 'custom' && !customService"
+          >
+            Please enter a custom specialization.
+          </div>
+        </div>
+      </form>
+      <form class="sign_up-form">
+        <p class="label_form" for="full_name">Name</p>
+        <input
+          id="full_name"
+          type="text"
+          name="full_name"
+          class="sign_up-full-width"
+          [(ngModel)]="specialist.full_name"
+          required
+          minlength="3"
+          maxlength="25"
+          #full_name="ngModel"
+        />
+        <div class="alert-danger" *ngIf="full_name.errors && f.submitted">
+          <div *ngIf="full_name.errors['required']">Name is required</div>
+          <div *ngIf="full_name.errors['minlength']">
+            Name must be at least 3 characters
+          </div>
+          <div *ngIf="full_name.errors['maxlength']">
+            Name must be at most 25 characters
+          </div>
+        </div>
+      </form>
+
+      <form class="sign_up-form">
+        <p class="label_form" for="email">Email</p>
+        <input
+          type="email"
+          class="sign_up-full-width"
+          id="email"
+          name="email"
+          [(ngModel)]="specialist.email"
+          required
+          email
+          #email="ngModel"
+        />
+        <div class="alert-danger" *ngIf="email.errors && f.submitted">
+          <div *ngIf="email.errors['required']">Email is required</div>
+          <div *ngIf="email.errors['email']">
+            Email must be a valid email address
+          </div>
+        </div>
+      </form>
+
+      <form class="password-form">
+        <p class="label_form" for="password">Password</p>
+        <input
+          type="password"
+          id="password"
+          class="password-full-width"
+          name="password"
+          [(ngModel)]="specialist.password"
+          required
+          minlength="6"
+          #password="ngModel"
+        />
+        <div class="alert-danger" *ngIf="password.errors && f.submitted">
+          <div *ngIf="password.errors['required']">Password is required</div>
+          <div *ngIf="password.errors['minlength']">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </form>
+      <div class="button-authorization">
+        <button mat-fab type="submit" class="authorization-account-button">
+          Sign up
+        </button>
+      </div>
+      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>
+    </form>
+  </form>
+  <div class="alert alert-success" *ngIf="isSuccessful">
+    Check your email to confirm registration!
+  </div>
+</div>

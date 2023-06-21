@@ -1,0 +1,38 @@
+<div class="dialog-container">
+  <div>
+    <form (ngSubmit)="addService()" enctype="multipart/form-data">
+      <h2>Add Service </h2>
+      <div>
+        <label>Service:</label>
+        <select [(ngModel)]="selectedService" name="selectedService">
+          <option value="">Select a service</option>
+          <option *ngFor="let service of services" [value]="service.id">{{ service.name }}</option>
+          <option value="custom">Custom Service</option>
+        </select>
+      </div>
+      <div *ngIf="selectedService === 'custom'">
+        <label>Custom Service:</label>
+        <input type="text" [(ngModel)]="customService" name="customService" required>
+      </div>
+      <div>
+        <label>Time Services:</label>
+        <input type="time" [(ngModel)]="timeServices" name="timeServices" required>
+      </div>
+      <div>
+        <label>Cost Services:</label>
+        <input type="text" [(ngModel)]="costServices" name="costServices" required>
+      </div>
+      <div>
+        <label>More Info:</label>
+        <textarea [(ngModel)]="moreInfo" name="moreInfo"></textarea>
+      </div>
+      <div>
+        <label>Upload Files:</label>
+        <input type="file" multiple (change)="onFileChange($event)">
+      </div>
+      <button type="submit">Add Service</button>
+      <button type="submit" (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
+</div>
+

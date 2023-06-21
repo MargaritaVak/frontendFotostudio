@@ -1,0 +1,67 @@
+<div class="main-page">
+  <div class="main-row">
+    <div class="main_content">
+      <p class="label-main">{{ location.name }}</p>
+      <figure class="frame">
+        <figcaption>
+          <li class="hours_item">
+            <span class="element">ADDRESS:</span
+            ><span class="time">{{ location.address }}</span>
+          </li>
+        </figcaption>
+        <figcaption>
+          <div class="location_hours">
+            <h3>Working Hours</h3>
+            <ul class="hours_list">
+              <li *ngFor="let time of location_time" class="hours_item">
+                <span class="day">{{ time.day_of_week }}:</span>
+                <span class="time"
+                  >{{ time.opening_time.slice(0, 5) }} -
+                  {{ time.closing_time.slice(0, 5) }}</span
+                >
+              </li>
+            </ul>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="right-block">
+      <div class="block-photostudio">
+        <mat-card-content>
+          <h3>Studio</h3>
+          <img
+            *ngFor="let photo of location.photo"
+            class="img-main"
+            [src]="sanitizer.bypassSecurityTrustResourceUrl(photo)"
+            alt="{{ location.name }}"
+          />
+        </mat-card-content>
+      </div>
+      <div *ngFor="let zone of zones" class="block-photostudio">
+        <mat-card-content>
+          <h3>{{ zone.name }}</h3>
+          <img
+            *ngFor="let photo of zone.photo"
+            class="img-main"
+            [src]="sanitizer.bypassSecurityTrustResourceUrl(photo)"
+            alt="{{ zone.name }}"
+          />
+          <p class="sum">{{ zone.price_per_hour }} rub.</p>
+          <div
+            id="logout-button-holder"
+            *ngIf="isLoggedIn && !isSpecialist"
+            class="book"
+          >
+            <button
+              mat-raised-button
+              class="sum"
+              [routerLink]="['/new-booking', zone.id]"
+            >
+              Book Now
+            </button>
+          </div>
+        </mat-card-content>
+      </div>
+    </div>
+  </div>
+</div>

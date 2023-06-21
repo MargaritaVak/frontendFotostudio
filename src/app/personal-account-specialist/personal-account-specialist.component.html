@@ -1,0 +1,225 @@
+<div class="main-page">
+  <div class="main_content">
+    <form class="profile">
+      <p class="label-main">My Profile</p>
+      <figure class="frame">
+        <div class="window-photo">
+          <img [src]="user.photo ? sanitizer.bypassSecurityTrustResourceUrl(user.photo) : 'https://sun9-59.userapi.com/impg/6rJY6jASkJjcGGO1tSb9XBqflkmkCbm30mUvyA/K-u2YhVOl7A.jpg?size=1120x630&quality=95&sign=8437e5928ee056c288cbc201c8239e8b&c_uniq_tag=-DERMfCPkZnirMCTLL-lN31I8aDk09sXXu7A7HX-k-c&type=album'"
+               alt='{{user.full_name}}'(click)="toggleContextMenu()">
+          <div class="context-menu" *ngIf="showContextMenu">
+            <div class="menu-item" (click)="showEditProfileFun(); showEditPhotoFun();toggleContextMenu()">Update photo</div>
+            <div class="menu-item" (click)="deletePhoto(); toggleContextMenu()">Delete photo</div>
+          </div>
+        </div>
+        <div class="frame-2">
+          <figcaption><p>name :</p> <p class="element">{{ user.full_name }}</p></figcaption>
+          <figcaption><p>specialization :</p> <p class="element">{{ specialization }}</p></figcaption>
+          <figcaption><p>work experience:</p> <p class="element">{{ user.work_experience ? user.work_experience : 'no' }}</p></figcaption>
+          <figcaption *ngIf="user.additional_information"><p>about me:</p> <p class="element">{{ user.additional_information }}</p></figcaption>
+          <figcaption>
+            <p (click)="showEditProfileFun(); showEditFun()">
+              <mat-icon class="button-up-name-icon">edit</mat-icon>
+            </p>
+            <div *ngIf="showEditProfile" class="edit-profile">
+              <div *ngIf="showEditName">
+                <input type="text" [(ngModel)]="specialistData.full_name" name="name" placeholder="Enter your name">
+                <input type="text" [(ngModel)]="specialistData.additional_information" name="name" placeholder="Enter additional information">
+                <input type="text" [(ngModel)]="specialistData.work_experience" name="name" placeholder="Enter work experience">
+                <button (click)="updateSpecialist()">Update</button>
+              </div>
+              <div *ngIf="showEditPhoto">
+                <input (change)="onFilePicked($event)" class="custom-file-input" type="file" lang="en"/>
+                <button (click)="onFileUpload()" class="myButton">Upload File</button>
+              </div>
+            </div>
+          </figcaption>
+        </div>
+      </figure>
+    </form>
+  </div>
+  <div class="right-block">
+    <div class="block">
+      <div class="button-border">
+        <button mat-raised-button
+                class="label-calendar"
+                (click)="toggleCalendar()">
+          CALENDAR
+        </button >
+      </div>
+      <div class="button-border-order">
+        <button mat-raised-button
+                class="label-calendar" (click)="toggleOrder()">
+          MY ORDER
+        </button >
+      </div>
+      <div class="button-border-service">
+        <button mat-raised-button class="label-calendar" (click)="toggleServiceList()">
+          MY SERVICE
+        </button>
+      </div>
+    </div>
+    <div class="block-2" *ngIf="showOrders">
+      <table class="table-order">
+        <thead>
+        <tr class="calendar-header" (mouseenter)="showOrdersControls()" (mouseleave)="hideOrdersControls()">
+          <th> </th>
+          <th>Number order</th>
+          <th>Date registration</th>
+          <th>Date completion</th>
+          <th>Status order</th>
+          <th>Order time</th>
+          <th>Album</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let order of orders; let i = index">
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ order.id_order_specialist}}</td>
+            <td>{{ order.date_registration | date: 'dd.MM.yyyy' }}</td>
+            <td>{{order.date_completion | date:'dd.MM.yyyy'}}</td>
+            <td>{{order.status_order}}</td>
+            <td>{{ order.data_start.slice(0, 5) }} - {{ order.date_end.slice(0, 5)  }}</td>
+            <td>
+              <button mat-button class="album"  (click)="router.navigate(['album', order.number_order])">album</button>
+            </td>
+          </tr>
+          <ng-container>
+            <tr>
+              <td colspan="7">
+                <div class="order-detail">
+                  <div class="detail-service">Service: {{ order.service_name }}</div>
+                  <div class="detail-service-cost">Cost: {{ order.total_cost }}</div>
+                  <div *ngIf="order.location_name">
+                    <div class="detail-location">Location: {{ order.location_name }}</div>
+                    <div class="detail-zone-time">Time booking: {{  order.start_time.slice(0, 5) }} - {{  order.end_time_book.slice(0, 5)  }}</div>
+                  </div>
+                  <div *ngIf="order.comment">
+                    <div class="order-comment">Commentary: {{ order.comment}}</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block-2"  *ngIf="showCalendar">
+      <div class="calendar-header" (mouseenter)="showCalendarControls()" (mouseleave)="hideCalendarControls()">
+        <div class="calendar-controls">
+          <h2 class="label">{{displayMonth}}</h2>
+          <button mat-button class="button_month" (click)="decreaseMonth()"> << </button>
+          <button mat-button class="button_month" (click)="setCurrentMonth()">current month</button>
+          <button mat-button class="button_month" (click)="increaseMonth()"> >> </button>
+        </div>
+        <table class='calendar-table' *ngIf="calendar">
+          <thead>
+          <tr>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of calendar | chunk: 7; let i = index">
+            <td class="calendar-day" [ngClass]="{'past-date': c.isPastDate, 'today': c.isToday}" *ngFor="let c of row; let j = index">
+              <div class="calendar-day-header" [ngClass]="{'blue-date': c.isToday}"><strong>{{c.date.getDate()}}</strong>  <strong *ngIf="c.title"><br>Order: {{c.title}}</strong><strong *ngIf="c.isToday || (i==0 && j==0) || (c.date.getDate() == 1)"> {{monthNames[c.date.getMonth()]}}</strong></div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="block-2" *ngIf="showServiceList">
+      <button mat-raised-button class="label-add-service" routerLink="/addService">
+        Add Service
+      </button>
+      <div class="service-item header-row">
+        <div class="service-label">Service Name</div>
+        <div class="service-label">Time</div>
+        <div class="service-label">Cost</div>
+        <div class="service-label">More Info</div>
+        <div class="service-label">Portfolio</div>
+        <div class="service-label">Actions</div>
+      </div>
+      <div *ngFor="let service of specialist_services" class="service-item">
+        <div class="base-string">
+          <div class="service-name">{{ service.name }}</div>
+          <div class="service-details">
+            <div class="service-info">
+              <ng-container *ngIf="!editServiceSpecialist || selectedService !== service">
+                <span *ngIf="service.time_services.hours">{{ service.time_services.hours }} hour</span>
+                <span *ngIf="service.time_services.minutes">.{{ service.time_services.minutes }} min</span>
+              </ng-container>
+              <ng-container *ngIf="editServiceSpecialist && selectedService === service">
+                <input type="time" [(ngModel)]="service.time_services" class="edit-input">
+              </ng-container>
+            </div>
+          </div>
+          <div class="service-details">
+            <div class="service-info">
+              <ng-container *ngIf="!editServiceSpecialist || selectedService !== service">{{ service.cost_services }}</ng-container>
+              <ng-container  *ngIf="editServiceSpecialist && selectedService === service"><input type="number" [(ngModel)]="service.cost_services" class="edit-input"></ng-container>
+            </div>
+
+          </div>
+          <div class="service-name">
+            <div class="service-info">
+              <ng-container  *ngIf="!editServiceSpecialist || selectedService !== service">{{ service.more_info }}</ng-container>
+              <ng-container *ngIf="editServiceSpecialist && selectedService === service">
+                <input type="text" [(ngModel)]="service.more_info" class="edit-input-text">
+              </ng-container>
+            </div>
+          </div>
+          <div class="service-details">
+            <div class="service-info">
+
+              <button mat-icon-button color="primary" (click)="viewPortfolio(service)">
+                <mat-icon>visibility</mat-icon>
+              </button>
+
+            </div>
+          </div>
+          <div class="service-actions">
+            <button mat-raised-button class="edit-service-button" (click)="toggleEditMode(service)">
+              <ng-container *ngIf="!editServiceSpecialist || selectedService !== service">Edit</ng-container>
+              <ng-container *ngIf="editServiceSpecialist && selectedService === service">Save</ng-container>
+            </button>
+            <button mat-raised-button class="edit-service-button"  *ngIf="editServiceSpecialist && selectedService === service" (click)="reload()">
+              <ng-container>Cancel</ng-container>
+            </button>
+            <button mat-raised-button class="delete-service-button" *ngIf="!editServiceSpecialist || selectedService !== service"(click)="deleteService(service.id)">
+              Delete
+            </button>
+          </div>
+        </div>
+        <div class="portfolio-images" *ngIf="showPortfolio && selectedService === service">
+          <div>
+            <img *ngFor="let photo of service.portfolio" class="img-main"
+                 [src]="sanitizer.bypassSecurityTrustResourceUrl(photo)"
+                 alt="{{ service.name }}" />
+          </div>
+          <button mat-raised-button color="primary" (click)="showFileInput = true">
+            Add Files
+          </button>
+          <button mat-raised-button color="primary" (click)="deletePortfolio(service.id)">
+            Delete photos
+          </button>
+          <div>
+            <input type="file" multiple (change)="handleFileInput($event)" *ngIf="showFileInput">
+            <button mat-raised-button color="primary" (click)="uploadFiles(service)" *ngIf="filesToUpload.length > 0">
+              Upload
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

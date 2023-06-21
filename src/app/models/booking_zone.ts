@@ -1,0 +1,1 @@
+export class BookingZone{  id!:string;  location_zone_id!: string;  start_time!: string;  end_time!: string;  booking_date!:string;  cost_end!:string;}

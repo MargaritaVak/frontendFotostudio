@@ -1,0 +1,1 @@
+export class LocationHours {  id!: string;  location_id!: string;  day_of_week!: string;  opening_time!: string;  closing_time!: string;}

@@ -1,0 +1,1 @@
+export class LocationById {  id!: string;  name!: string;  photo!: string[];  address!: string;}
